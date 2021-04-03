@@ -29,7 +29,7 @@ public class AppUserDetail implements UserDetails {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private AppUserRole mUserRole;
+    private AppUserRole userRole;
 
     private Boolean lock;
     private Boolean enabled;
@@ -50,7 +50,7 @@ public class AppUserDetail implements UserDetails {
         this.username = username;
         this.email = email;
         this.password = password;
-        mUserRole = userRole;
+        this.userRole = userRole;
         this.lock = lock;
         this.enabled = enabled;
     }
@@ -88,11 +88,11 @@ public class AppUserDetail implements UserDetails {
     }
 
     public AppUserRole getUserRole() {
-        return mUserRole;
+        return userRole;
     }
 
     public void setUserRole(AppUserRole userRole) {
-        mUserRole = userRole;
+        this.userRole = userRole;
     }
 
     public Boolean getLock() {
@@ -113,7 +113,7 @@ public class AppUserDetail implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(mUserRole.name());
+        SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(userRole.name());
         return Collections.singletonList(grantedAuthority);
     }
 
