@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Entity
+@Table(name = "users")
 public class AppUserDetail implements UserDetails {
 
     @Id
