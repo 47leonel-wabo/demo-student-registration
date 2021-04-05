@@ -24,36 +24,48 @@ public class AppUserDetail implements UserDetails {
     )
     private Long id;
 
-    private String name;
-    private String username;
+    private String firstName;
+    private String lastName;
     private String email;
     private String password;
 
     @Enumerated(EnumType.STRING)
     private AppUserRole userRole;
 
-    private Boolean lock;
-    private Boolean enabled;
+    private Boolean locked = false;
+    private Boolean enabled = false;
 
     public AppUserDetail() {
     }
 
-    public AppUserDetail(
-            String name,
-            String username,
-            String email,
-            String password,
-            AppUserRole userRole,
-            Boolean lock,
-            Boolean enabled
-    ) {
-        this.name = name;
-        this.username = username;
+    public AppUserDetail(String firstName,
+                         String lastName,
+                         String email,
+                         String password,
+                         AppUserRole userRole,
+                         Boolean locked,
+                         Boolean enabled) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.userRole = userRole;
-        this.lock = lock;
+        this.locked = locked;
         this.enabled = enabled;
+    }
+
+    public AppUserDetail(
+            String firstName,
+            String lastName,
+            String email,
+            String password,
+            AppUserRole userRole
+    ) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.userRole = userRole;
     }
 
     public Long getId() {
@@ -64,16 +76,16 @@ public class AppUserDetail implements UserDetails {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -96,12 +108,12 @@ public class AppUserDetail implements UserDetails {
         this.userRole = userRole;
     }
 
-    public Boolean getLock() {
-        return lock;
+    public Boolean getLocked() {
+        return locked;
     }
 
-    public void setLock(Boolean lock) {
-        this.lock = lock;
+    public void setLocked(Boolean locked) {
+        this.locked = locked;
     }
 
     public Boolean getEnabled() {
@@ -125,7 +137,7 @@ public class AppUserDetail implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
     @Override
@@ -135,7 +147,7 @@ public class AppUserDetail implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return !lock;
+        return !locked;
     }
 
     @Override
