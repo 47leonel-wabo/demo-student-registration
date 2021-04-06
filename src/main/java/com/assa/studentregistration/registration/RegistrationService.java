@@ -21,7 +21,7 @@ public class RegistrationService {
     public String register(RegistrationRequest request) {
         boolean isValidEmail = mEmailValidation.test(request.getEmail());
         if (!isValidEmail) {
-            throw new IllegalStateException("Invalid email!");
+            throw new IllegalStateException("email already in use");
         }
         return mUserDetailsService.signUpUser(
                 new AppUserDetail(
