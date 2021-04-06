@@ -1,10 +1,7 @@
 package com.assa.studentregistration.registration;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/api/v1/registration")
@@ -20,6 +17,11 @@ public class UserRegistrationController {
     @PostMapping
     public String register(@RequestBody RegistrationRequest request) {
         return mRegistrationService.register(request);
+    }
+
+    @GetMapping(path = "/confirm")
+    public String confirmRegistration(@RequestParam(name = "token") final String token){
+        return mRegistrationService.confirmToken(token);
     }
 
 }

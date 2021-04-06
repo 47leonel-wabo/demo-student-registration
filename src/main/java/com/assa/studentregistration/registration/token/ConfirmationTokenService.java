@@ -17,9 +17,12 @@ public class ConfirmationTokenService {
         mTokenRepository.save(token);
     }
 
-    public ConfirmationToken fetchToken(String token) {
+    public ConfirmationToken fetchToken(final String token){
         return mTokenRepository
                 .findByToken(token)
-                .orElseThrow(() -> new IllegalStateException(String.format("Confirmation token with token %s not found", token)));
+                .orElseThrow(() ->
+                        new IllegalStateException(String.format("Token %s not found", token)));
+
     }
+
 }

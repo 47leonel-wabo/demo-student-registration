@@ -54,4 +54,15 @@ public class AppUserDetailsService implements UserDetailsService {
         // TODO: Send email
         return token;
     }
+
+    public AppUserDetail fetchUserById(Long userId){
+        return mUserRepository
+                .findById(userId)
+                .orElseThrow(() -> new IllegalStateException(String.format("User with id %s not found", userId)));
+    }
+
+    public void enableUser(AppUserDetail userDetail){
+        userDetail.setEnabled(true);
+        mUserRepository.save(userDetail);
+    }
 }
