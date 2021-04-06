@@ -22,14 +22,9 @@ public class EmailService implements EmailSender {
         mMailSender = mailSender;
     }
 
-//    @Bean
-//    public JavaMailSender javaMailSender(){
-//        return new JavaMailSenderImpl();
-//    }
-
     @Override
     @Async
-    public void send(String to, String message) {
+    public void send(final String to, final String message) {
         MimeMessage mimeMessage = mMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
         try {

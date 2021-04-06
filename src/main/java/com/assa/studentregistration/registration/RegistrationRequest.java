@@ -7,7 +7,11 @@ public class RegistrationRequest {
     private final String email;
     private final String password;
 
-    public RegistrationRequest(String firstName, String lastName, String email, String password) {
+    public RegistrationRequest(
+            final String firstName,
+            final String lastName,
+            final String email,
+            final String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

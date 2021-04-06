@@ -25,7 +25,7 @@ public class RegistrationService {
         mTokenService = tokenService;
     }
 
-    public String register(RegistrationRequest request) {
+    public String register(final RegistrationRequest request) {
         boolean isValidEmail = mEmailValidation.test(request.getEmail());
         if (!isValidEmail) {
             throw new IllegalStateException("email already in use");
@@ -42,7 +42,7 @@ public class RegistrationService {
     }
 
     @Transactional
-    public String confirmToken(String token) {
+    public String confirmToken(final String token) {
         ConfirmationToken confirmationToken = mTokenService.fetchToken(token);
         if (confirmationToken.getConfirmAt() != null) {
             throw new IllegalStateException("Email already confirmed");
@@ -59,7 +59,7 @@ public class RegistrationService {
         mTokenService.saveConfirmationToken(confirmationToken);
         // enable user
         mUserDetailsService.enableUser(userDetail);
-        return "Token confirmed";
+        return "Registration confirmed";
     }
 
 }

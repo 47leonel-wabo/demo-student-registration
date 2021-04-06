@@ -55,11 +55,11 @@ public class AppUserDetail implements UserDetails {
     }
 
     public AppUserDetail(
-            String firstName,
-            String lastName,
-            String email,
-            String password,
-            AppUserRole userRole
+            final String firstName,
+            final String lastName,
+            final String email,
+            final String password,
+            final AppUserRole userRole
     ) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -72,7 +72,7 @@ public class AppUserDetail implements UserDetails {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -80,11 +80,11 @@ public class AppUserDetail implements UserDetails {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(final String firstName) {
         this.firstName = firstName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(final String lastName) {
         this.lastName = lastName;
     }
 
@@ -92,11 +92,11 @@ public class AppUserDetail implements UserDetails {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(final String email) {
         this.email = email;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(final String password) {
         this.password = password;
     }
 
@@ -104,7 +104,7 @@ public class AppUserDetail implements UserDetails {
         return userRole;
     }
 
-    public void setUserRole(AppUserRole userRole) {
+    public void setUserRole(final AppUserRole userRole) {
         this.userRole = userRole;
     }
 
@@ -112,7 +112,7 @@ public class AppUserDetail implements UserDetails {
         return locked;
     }
 
-    public void setLocked(Boolean locked) {
+    public void setLocked(final Boolean locked) {
         this.locked = locked;
     }
 
@@ -120,7 +120,7 @@ public class AppUserDetail implements UserDetails {
         return enabled;
     }
 
-    public void setEnabled(Boolean enabled) {
+    public void setEnabled(final Boolean enabled) {
         this.enabled = enabled;
     }
 

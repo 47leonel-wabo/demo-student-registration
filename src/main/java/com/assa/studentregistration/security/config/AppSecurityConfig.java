@@ -19,7 +19,9 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     private final PasswordEncoder mPasswordEncoder;
 
     @Autowired
-    public AppSecurityConfig(AppUserDetailsService appUserDetailsService, PasswordEncoder passwordEncoder) {
+    public AppSecurityConfig(
+            final AppUserDetailsService appUserDetailsService,
+            final PasswordEncoder passwordEncoder) {
         mAppUserDetailsService = appUserDetailsService;
         mPasswordEncoder = passwordEncoder;
     }
@@ -41,7 +43,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider(){
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(mPasswordEncoder);
         provider.setUserDetailsService(mAppUserDetailsService);

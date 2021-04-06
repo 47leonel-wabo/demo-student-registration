@@ -10,12 +10,12 @@ public class UserRegistrationController {
     private final RegistrationService mRegistrationService;
 
     @Autowired
-    public UserRegistrationController(RegistrationService registrationService) {
+    public UserRegistrationController(final RegistrationService registrationService) {
         mRegistrationService = registrationService;
     }
 
     @PostMapping
-    public String register(@RequestBody RegistrationRequest request) {
+    public String register(@RequestBody final RegistrationRequest request) {
         return mRegistrationService.register(request);
     }
 

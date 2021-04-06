@@ -9,11 +9,11 @@ public class ConfirmationTokenService {
     private final ConfirmationTokenRepository mTokenRepository;
 
     @Autowired
-    public ConfirmationTokenService(ConfirmationTokenRepository tokenRepository) {
+    public ConfirmationTokenService(final ConfirmationTokenRepository tokenRepository) {
         mTokenRepository = tokenRepository;
     }
 
-    public void saveConfirmationToken(ConfirmationToken token) {
+    public void saveConfirmationToken(final ConfirmationToken token) {
         mTokenRepository.save(token);
     }
 

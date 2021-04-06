@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.mail.MessagingException;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -37,7 +36,7 @@ public class AppUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
         return mUserRepository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("User  with %s not found", username)));
     }
@@ -59,12 +58,28 @@ public class AppUserDetailsService implements UserDetailsService {
                 appUserDetail);
         mTokenService.saveConfirmationToken(confirmationToken);
         // Send email
-        String link = String.format("http://localhost:8080/api/v1/registration/confirm?token=%s", token);
-        mEmailService.send(appUserDetail.getEmail(), link);
+        String link = String.format(
+                "<html>" +
+                        "<head>" +
+                        "<title>Student Registration</title>" +
+                        "<style>" +
+                        "h1{background-color: #3e3e3e; color: white;}" +
+                        "body{padding: 10px;}" +
+                        "</style>" +
+                        "</head>" +
+                        "<body>" +
+                        "<h1>Confirm Email</h1>" +
+                        "Hi, %s<br/><br/>" +
+                        "Welcome,<br/> please click on the link below to activate your account<br/><br/>" +
+                        "<a href=\"http://localhost:8080/api/v1/registration/confirm?token=%s\">Activation Link</a><br/><br/>" +
+                        "This link will expires in 15 min." +
+                        "</body>" +
+                        "</html>", appUserDetail.getFirstName(), token);
+        mEmailService.send(appUserDetail.getEmail(),link);
         return token;
     }
 
-    public AppUserDetail fetchUserById(Long userId) {
+    public AppUserDetail fetchUserById(final Long userId) {
         return mUserRepository
                 .findById(userId)
                 .orElseThrow(() -> new IllegalStateException(String.format("User with id %s not found", userId)));

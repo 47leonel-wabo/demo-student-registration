@@ -40,10 +40,10 @@ public class ConfirmationToken {
     public ConfirmationToken() {
     }
 
-    public ConfirmationToken(String token,
-                             LocalDateTime createdAt,
-                             LocalDateTime expiredAt,
-                             AppUserDetail appUser) {
+    public ConfirmationToken(final String token,
+                             final LocalDateTime createdAt,
+                             final LocalDateTime expiredAt,
+                             final AppUserDetail appUser) {
         this.token = token;
         this.createdAt = createdAt;
         this.expiredAt = expiredAt;
@@ -54,7 +54,7 @@ public class ConfirmationToken {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -66,11 +66,11 @@ public class ConfirmationToken {
         return appUser;
     }
 
-    public void setAppUser(AppUserDetail appUser) {
+    public void setAppUser(final AppUserDetail appUser) {
         this.appUser = appUser;
     }
 
-    public void setToken(String token) {
+    public void setToken(final String token) {
         this.token = token;
     }
 
@@ -78,7 +78,7 @@ public class ConfirmationToken {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(final LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -86,7 +86,7 @@ public class ConfirmationToken {
         return expiredAt;
     }
 
-    public void setExpiredAt(LocalDateTime expiredAt) {
+    public void setExpiredAt(final LocalDateTime expiredAt) {
         this.expiredAt = expiredAt;
     }
 
@@ -94,7 +94,7 @@ public class ConfirmationToken {
         return confirmAt;
     }
 
-    public void setConfirmAt(LocalDateTime confirmAt) {
+    public void setConfirmAt(final LocalDateTime confirmAt) {
         this.confirmAt = confirmAt;
     }
 }
